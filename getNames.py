@@ -14,6 +14,6 @@ def get_package_names(outfile):
         writer = csv.writer(out)
         
         for name in json:
-            writer.writerow(name.split("/"))
+            writer.writerow(name.split("/") + [name])
 
     print("success")
