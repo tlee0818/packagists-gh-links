@@ -34,9 +34,20 @@ def get_package_links(infile, outfile, nolinkout):
             writer.writerow([trailing, link])
             print(count)
 
-    with open(nolinkout, "w", newline = "") as noLink:
-        writer = csv.writer(noLink)
-
-        for name in no_links:
-            writer.writerow([name])
     print("success")
+
+def get_packages_no_link(link_file, name_file, outfile):
+    linked = set()
+    with open(link_file, newline='') as links:
+        reader = csv.reader(links)
+        
+        for row in reader:
+            linked.add(row[0])
+
+    with open(name_file, newline='') as links, open(outfile, 'w', newline='') as out:
+        reader = csv.reader(links)
+        writer = csv.writer(out)
+
+        for row in reader:
+            if row[2] not in linked:
+                writer.writerow(row)
