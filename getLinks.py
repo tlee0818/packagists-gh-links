@@ -42,8 +42,11 @@ def get_packages_no_link(link_file, name_file, outfile):
         reader = csv.reader(links)
         
         for row in reader:
+            if row[0] in linked:
+                print(row[0])
             linked.add(row[0])
 
+    print(len(linked))
     with open(name_file, newline='') as links, open(outfile, 'w', newline='') as out:
         reader = csv.reader(links)
         writer = csv.writer(out)
